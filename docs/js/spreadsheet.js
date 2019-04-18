@@ -9,9 +9,16 @@ doc.useServiceAccountAuth(creds, function (err) {
 
   // Get all of the rows from the spreadsheet.
   doc.getRows(1, function (err, rows) {
+    console.log("Je suis la ");
     console.log(rows[rows.length-1].timestamp);
     console.log(rows[rows.length-1].scanneddata);
     console.log(rows[rows.length-1].location);
     //console.log("The total number of rows is : " + rows.length);
   });
 });
+
+//*******************************************************************//
+// Ceci fonctionne en console avec la commande node spreadsheet.js   //
+// J'aimerais intégrer ce code au fichier app.js pour avoir les infos//
+// au niveau de l'interface Web...
+//*******************************************************************//

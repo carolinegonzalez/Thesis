@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Tracking System for CMI Defence</title>
+  <title>Inventory Tracking System</title>
 
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -24,11 +24,26 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" id="maincontent">
     <div class="jumbotron text-center">
-      <h1>Tracking Systsem for CMI Defence</h1>
+      <h1>Inventory Tracking System</h1>
     </div>
 
+    <!-- Product selection menu -->
+    <div id="menuleft">
+      <ul id="menu">
+        <h3><b>Select a product</b></h3><br>
+        <div>
+          <a href="#void" onclick="App.select1()">Product 1</a>
+        </div>
+
+        <div>
+          <a href="#void" onclick="App.select2()">Product 2</a>
+        </div>
+      </ul>
+    </div>
+
+    <!-- Modal form to display balance information -->
     <div class="col-md-12" id="article-list">
       <div class="row">
         <div class="col-lg-12">
@@ -37,86 +52,335 @@
         </div>
       </div>
 
-      <div class="row panel panel-default">
+      <!-- Modal form to display basic buttons -->
+      <div class="row panel panel-default" id="article-test">
         <div class="panel-heading clearfix">
           <div class="panel-title">
-            <button class="btn btn-info btn-lg pull-left" data-toggle="collapse" data-target="#events" aria-expanded="false" aria-controls="events">Events</button>
-            <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle">Add a new step</button>
+            <button class="btn btn-info btn-lg pull-left"  data-toggle="collapse" data-target="#events" aria-expanded="false" aria-controls="events">History</button>
+            <button class="btn btn-info btn-lg pull-left" id="trackProd" data-toggle="modal" data-target="#track">Track a product</button>
+            <button class="btn btn-info btn-lg pull-right" id="newIN" data-toggle="modal" data-target="#checkIn">Check In</button>
+            <button class="btn btn-info btn-lg pull-right" id="newOUT" data-toggle="modal" data-target="#checkOut">Check Out</button>
           </div>
         </div>
         <ul id="events" class="collapse list-group"></ul>
       </div>
-
-      <div id="articlesRow" class="row">
-        <!-- ARTICLES LOAD HERE -->
-      </div>
     </div>
   </div>
 
-
-  <div id="articleTemplate" style="display: none;">
-    <div class="row-lg-12">
-      <div class="panel panel-default panel-article">
-        <div class="panel-heading">
-          <h3 class="panel-title"></h3>
-        </div>
-        <div class="panel-body">
-          <strong>Organisation</strong>: <span class="article-organisation"></span><br/>
-          <strong>Location</strong>: <span class="article-location"></span><br/>
-          <strong>Comment</strong>: <span class="article-comment"></span><br/>
-          <strong>Date</strong>: <span class="article-date"></span><br/>
-        </div>
-        <!--- <div class="panel-footer">
-          <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(); return false;">Buy</button>
-        </div> --->
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal form to sell an article -->
-  <div class="modal fade" id="sellArticle" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add a new step</h4>
-        </div>
-        <div class="modal-body">
-
-          <div class="row">
-            <div class="col-lg-12">
-              <form>
-                <div class="form-group">
-                  <label for="article_name">Location</label>
-                  <input type="text" class="form-control" id="article_name" placeholder="Enter the location of your article">
-                </div>
-                <div class="form-group">
-                  <label for="description">Comment (optional)</label>
-                  <textarea type="text" class="form-control vresize" id="article_description" placeholder="Let a comment here." maxlength="255"></textarea>
-                </div>
-              </form>
+  <!-- Seller template -->
+  <div class="container" id="maincontent">
+    <div id="sellerTemplate1">
+      <div class="row-lg-12">
+        <div class="panel panel-default panel-article">
+          <div class="panel-heading">
+            <h3 id="title1" class="panel-title"></h3>
+          </div>
+          <div class="panel-body">
+              <textarea id='testLen'>This is a test Length</textarea>
+              <textarea id='testDate'> This is a test Date </textarea>
+              <textarea id='testOrganisation'> This is a test Product </textarea>
+              <textarea id='testProduct'> This is a test Product </textarea>
+              <textarea id='testAddress'> This is a test Address </textarea>
+              <strong>Stock Level</strong>: <span class="stock-level" id="stock1"></span><br/>
+              <strong>Minimum Stock Required</strong>: <span class="stock-MSL" id="minStock1"></span><br/>
+              <strong>Status</strong>: <span class="stock-status" id="status1"></span><br/>
+              <strong>Production Status</strong>: <span class="production-status" id="production1"></span><br/>
+          </div>
+          <div class="panel-footer">
+            <button class="btn btn-info btn-lg pull-right" id="seeNewOrder" data-toggle="modal" data-target="#seeOrder">See pending orders</button>
+            <button class="btn btn-info btn-lg pull-right" id="addNewClient" data-toggle="modal" data-target="#addClient">Add a client</button>
+            <button type="button" class="btn btn-primary btn-success btn-buy" id="releaseOrder1" onclick="App.releaseOrder(); return false;">Release a production order</button></br></br></br>
+            <!-- Modal form to display clients information -->
+            <div id="clientsRow" class="row-lg-12" style="padding-bottom:40px;">
+              <!-- CLIENTS LOAD HERE -->
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.sellArticle(); return false;">Submit</button>
-          <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+    <!-- Client template -->
+    <div id="clientTemplate1" style="display: none;">
+      <div class="row-lg-12">
+        <div class="panel panel-default panel-article">
+          <div class="panel-heading">
+            <h3 class="panel-title" id="clientNb"></h3>
+          </div>
+          <div class="panel-body">
+            <strong>Stock Level: </strong>: <span class="client-stock"></span><br/>
+            <strong>Product(s) ordered: </strong>: <span class="client-ordered"></span><br/>
+            <strong>Product(s) accepted: </strong>: <span class="client-accepted"></span><br/>
+            <strong>Product(s) on delivery: </strong>: <span class="client-delivered"></span><br/>
+          </div>
+          <div class="panel-footer">
+            <button type="button" class="btn btn-info btn-lg pull-right" id="newOrder1" data-toggle="modal" data-target="#renewOrder1">Send a new order</button>
+            <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.pay(this); return false;">Pay</button>
+          </div>
         </div>
       </div>
+    </div>
 
+    <!-- Modal form to check a product in -->
+    <div class="modal fade" id="checkIn" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Check a product in</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <form>
+                  <div class="form-group">
+                    <label for="in_product">Product</label>
+                    <input type="text" class="form-control" id="in_product" placeholder="Enter the product id">
+                  </div>
+                  <div class="form-group">
+                    <label for="in_product_name">Name</label>
+                    <input type="text" class="form-control" id="in_product_name" placeholder="Enter the product name">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.newInOut(1); return false;">Submit</button>
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal form to check a product out -->
+    <div class="modal fade" id="checkOut" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Check a product out</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <form>
+                  <div class="form-group">
+                    <label for="out_product">Product</label>
+                    <input type="text" class="form-control" id="out_product" placeholder="Enter the product id">
+                  </div>
+                  <div class="form-group">
+                    <label for="out_product_name">Name</label>
+                    <input type="text" class="form-control" id="out_product_name" placeholder="Enter the product name">
+                  </div>
+                  <div class="form-group">
+                    <label for="out_product_name">Client</label>
+                    <input type="text" class="form-control" id="out_product_client" placeholder="Enter the product client's name">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.newInOut(2); return false;">Submit</button>
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal form to add a new client -->
+    <div class="modal fade" id="addClient" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add a new client</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <form>
+                  <div class="form-group">
+                    <label for="out_product">Client's address</label>
+                    <input type="text" class="form-control" id="client-address" placeholder="Enter the client address">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.addClient(); return false;">Submit</button>
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal form to display pending orders -->
+    <div class="modal fade" id="seeOrder" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Pending orders</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div id="ordersRow" class="row">
+                  <!-- PENDING ORDERS LOAD HERE -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending order template -->
+    <div id="orderRequestTemplate" style="display: none;">
+      <div class="row-lg-12">
+        <strong>Client: </strong>:<span class="order-client"></span></br>
+        <strong>Quantity: </strong>:<span class="order-quantity"></span></br>
+        <strong>Price: </strong>:<span class="order-price"></span></br>
+        <button type="button" class="btn btn-primary btn-success btn-buy pull-right" id="accept" onclick="App.acceptOrder(this); return false;">Accept</button>
+        </br>
+      </div>
+    </div>
+
+    <!-- Modal form to track a product based on its name -->
+    <div class="modal fade" id="track" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Track a specific product</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <form>
+                  <div class="form-group">
+                    <label for="tracked_product">Product name</label>
+                    <input type="text" class="form-control" id="tracked_product" placeholder="Enter the product name to track">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.track(); return false;">Submit</button>
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal form to place a new order -->
+    <div class="modal fade" id="renewOrder1" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Order renewal</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <form>
+                  <div class="form-group">
+                    <label for="order_quantity">Quantity</label>
+                    <input type="text" class="form-control" id="order_quantity1" placeholder="1">
+                  </div>
+                  <div class="form-group">
+                    <label for="order_quantity">Price</label>
+                    <input type="text" class="form-control" id="order_price1" placeholder="1">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="releaseButton1" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.placeOrder(); return false;">Submit</button>
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div id="footer" class="container">
     <nav class="navbar navbar-default navbar-fixed-bottom">
       <div class="navbar-inner navbar-content-center text-center">
-        <p class="text-muted" credit><a href="http://chainskills.com">ChainSkills</a> - &copy; 2017 - <a href="https://twitter.com/sarbogast">Sebastien Arbogast</a> and <a href="https://twitter.com/eloudsa">Said Eloudrhiri</a></p>
+          <p class="text-muted" credit><a href="http://www.cmigroupe.com/cmi-defence">CMI DEFENCE</a> &copy; - 2019 - <a href="mailto:caroline.gonzalez@cmigroupe.com">Caroline Gonzalez</a></p>
       </div>
     </nav>
   </div>
 
+  <!-- Script to retrieve data from Google spreadsheet thanks to Google Sheets API -->
+  <script>
+  function makeApiCall() {
+    var params = {
+      // The ID of the spreadsheet to retrieve data from.
+      spreadsheetId: '1d1SrSs6RYZLoFb8VR9YJ76OU2RdiFW-9QEV8GDc-JFE',
+      // The A1 notation of the values to retrieve.
+      range: 'testIn',
+    };
+
+    var request = gapi.client.sheets.spreadsheets.values.get(params);
+    request.then(function(response) {
+      var values = response.result.values;
+      var totalLen = values.length;
+      var lastDate = values[totalLen-1][0];
+      var lastOrganisation = values[totalLen - 1][1];
+      var lastProduct = response.result.values[totalLen-1][2];
+      var lastProduct = values[totalLen-1][2];
+      $('#testLen').val(totalLen.toString());
+      $('#testDate').val(lastDate);
+      $('#testOrganisation').val(lastOrganisation);
+      $('#testProduct').val(lastProduct);
+    }, function(reason) {
+      console.error('error: ' + reason.result.error.message);
+    });
+  }
+
+  function initClient() {
+    var API_KEY = 'AIzaSyDLTLjbWF6gC9pFCO0gwcUF-6D-XMbMfLw';
+
+    var CLIENT_ID = '275480983832-p9gq8c6e93u19k9liv5eghi251p1kkh6.apps.googleusercontent.com';
+
+    var SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+
+    gapi.client.init({
+      'apiKey': API_KEY,
+      'clientId': CLIENT_ID,
+      'scope': SCOPE,
+      'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+    }).then(function() {
+      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+      updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    });
+  }
+
+  function handleClientLoad() {
+    gapi.load('client:auth2', initClient);
+  }
+
+  function updateSignInStatus(isSignedIn) {
+      makeApiCall();
+  }
+  </script>
+
+  <script async defer src="https://apis.google.com/js/api.js"
+    onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
