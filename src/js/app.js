@@ -147,6 +147,9 @@ App = {
     Nothing
   */
   displayAccountInfo: function() {
+    console.log("Cookies values are " + App.getCookie("select1"));
+    console.log("Cookies values are " + App.getCookie("select2"));
+    console.log("Cookies values are " + App.getCookie("currLen"));
     web3.eth.getCoinbase(function(err, account) {
       if(err === null) {
         App.account = account;

@@ -1930,8 +1930,18 @@
       "events": {},
       "links": {},
       "address": "0xdec01e615439ac54a9fe4914ed088fa0cf21beba"
+    },
+    "6007": {
+      "events": {},
+      "links": {},
+      "address": "0xdec01e615439ac54a9fe4914ed088fa0cf21beba"
+    },
+    "6008": {
+      "events": {},
+      "links": {},
+      "address": "0xdec01e615439ac54a9fe4914ed088fa0cf21beba"
     }
   },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2019-04-18T12:26:25.895Z"
+  "updatedAt": "2019-04-23T10:57:52.937Z"
 }

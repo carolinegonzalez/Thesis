@@ -17,8 +17,11 @@
   },
   "dependencies": {
     "browserify": "^16.2.3",
+    "dotenv": "^7.0.0",
     "google": "^2.1.0",
     "google-spreadsheet": "^2.0.7",
+    "truffle": "^4.1.11",
+    "truffle-hdwallet-provider": "^1.0.7",
     "uniq": "^1.0.1"
   }
 }
