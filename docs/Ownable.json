@@ -8,14 +8,14 @@
       "type": "constructor"
     }
   ],
-  "bytecode": "0x60606040523415600e57600080fd5b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550603580605b6000396000f3006060604052600080fd00a165627a7a72305820aa4289d36ece699f7be20be79043a5fb09c1e013177173582d1565c8bd92d33a0029",
-  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820aa4289d36ece699f7be20be79043a5fb09c1e013177173582d1565c8bd92d33a0029",
+  "bytecode": "0x60606040523415600e57600080fd5b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550603580605b6000396000f3006060604052600080fd00a165627a7a7230582090e6fbf6c34046cc4cadf1cb46faf5a357f9369f2a7281b91b47f7f7b84c28860029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a7230582090e6fbf6c34046cc4cadf1cb46faf5a357f9369f2a7281b91b47f7f7b84c28860029",
   "sourceMap": "26:220:2:-;;;189:55;;;;;;;;229:10;221:5;;:18;;;;;;;;;;;;;;;;;;26:220;;;;;;",
   "deployedSourceMap": "26:220:2:-;;;;;",
   "source": "pragma solidity ^0.4.18;\n\ncontract Ownable {\n  // state variables\n  address owner;\n\n  // modifiers\n  modifier onlyOwner() {\n    require(msg.sender == owner);\n    _;\n  }\n\n  // constructor\n  function Ownable() public {\n    owner = msg.sender;\n  }\n}\n",
-  "sourcePath": "C:\\Users\\gonza\\Desktop\\CMIDefence-Modified\\contracts\\Ownable.sol",
+  "sourcePath": "C:\\Users\\gonza\\Desktop\\FinalProject\\CMIDefence-Modified\\contracts\\Ownable.sol",
   "ast": {
-    "absolutePath": "/C/Users/gonza/Desktop/CMIDefence-Modified/contracts/Ownable.sol",
+    "absolutePath": "/C/Users/gonza/Desktop/FinalProject/CMIDefence-Modified/contracts/Ownable.sol",
     "exportedSymbols": {
       "Ownable": [
         933
@@ -305,7 +305,7 @@
     "src": "0:247:2"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/gonza/Desktop/CMIDefence-Modified/contracts/Ownable.sol",
+    "absolutePath": "/C/Users/gonza/Desktop/FinalProject/CMIDefence-Modified/contracts/Ownable.sol",
     "exportedSymbols": {
       "Ownable": [
         933
@@ -600,5 +600,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2019-05-12T08:29:46.732Z"
+  "updatedAt": "2019-05-12T10:49:02.104Z"
 }
