@@ -2684,8 +2684,26 @@
       "links": {},
       "address": "0xad33fde70f66538ba7134a39538a0abb7b51c3e3",
       "transactionHash": "0xbc398e3037cad9a78187ae6c38dfb881ef81a3c64b11118bb8fcb297c0b9c322"
+    },
+    "6049": {
+      "events": {},
+      "links": {},
+      "address": "0xdec01e615439ac54a9fe4914ed088fa0cf21beba",
+      "transactionHash": "0x75823d9001d1c2abb732ac368dda058ef6389fbe42d40e4ef2d84a472d4de69d"
+    },
+    "6050": {
+      "events": {},
+      "links": {},
+      "address": "0xdec01e615439ac54a9fe4914ed088fa0cf21beba",
+      "transactionHash": "0x75823d9001d1c2abb732ac368dda058ef6389fbe42d40e4ef2d84a472d4de69d"
+    },
+    "6051": {
+      "events": {},
+      "links": {},
+      "address": "0xdec01e615439ac54a9fe4914ed088fa0cf21beba",
+      "transactionHash": "0x75823d9001d1c2abb732ac368dda058ef6389fbe42d40e4ef2d84a472d4de69d"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2019-05-12T10:49:03.243Z"
+  "updatedAt": "2019-05-16T11:53:05.538Z"
 }
