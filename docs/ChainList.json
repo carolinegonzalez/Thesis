@@ -24443,8 +24443,14 @@
       "links": {},
       "address": "0xc22c809df9d966d33bdca46aee17c089bbed7828",
       "transactionHash": "0xeedcccf54a9d98eea0c75cc72d22fa4e8cf7d860ef2dbe6536aba2fb2a675baf"
+    },
+    "6054": {
+      "events": {},
+      "links": {},
+      "address": "0x1cefd4e12bcecd9d159bb274c7226867410eed38",
+      "transactionHash": "0xcd0d8829b8c38429a2913ebe2aae10b85d8051b79f77d3f49922255b856e768f"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2019-05-16T13:47:04.986Z"
+  "updatedAt": "2019-05-16T14:08:23.453Z"
 }
