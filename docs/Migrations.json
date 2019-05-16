@@ -2702,8 +2702,14 @@
       "links": {},
       "address": "0xdec01e615439ac54a9fe4914ed088fa0cf21beba",
       "transactionHash": "0x75823d9001d1c2abb732ac368dda058ef6389fbe42d40e4ef2d84a472d4de69d"
+    },
+    "6052": {
+      "events": {},
+      "links": {},
+      "address": "0xdec01e615439ac54a9fe4914ed088fa0cf21beba",
+      "transactionHash": "0x75823d9001d1c2abb732ac368dda058ef6389fbe42d40e4ef2d84a472d4de69d"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2019-05-16T11:53:05.538Z"
+  "updatedAt": "2019-05-16T13:13:09.328Z"
 }
